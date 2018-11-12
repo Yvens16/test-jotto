@@ -8,8 +8,11 @@ import Congrats from "./Congrats";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
+const defaultProps = { success: false };
+
 const setup = (props={}) => {
-  return shallow(<Congrats {...props} />)
+  const setupProps = {...defaultProps, ...props };
+  return shallow(<Congrats {...setupProps} />)
 }
 
 test("renders without error", () => {
@@ -30,4 +33,5 @@ it("renders non-empty congrats message when sucess prop is true", () => {
 it("does not trhow warning with expected props", () => {
   const expectedProps = { success : false};
   checkProps(Congrats, expectedProps);
-})
+});
+
